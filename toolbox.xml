@@ -1,0 +1,37 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="ROBOCON" colour="#cb2026" icon="ROBO">
+    <block type="rover_turn_until_line_detected">
+      <value name="left_wheel_speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="right_wheel_speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="rover_follow_line_until">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="request">
+      </value>
+    </block>
+    <block type="rover_follow_line_delay">
+      <value name="speed">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="time">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+  </category>
+</xml>
