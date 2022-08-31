@@ -3,7 +3,7 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     init: function () {
       this.jsonInit(
         {
-          "type": "rover_move_motor",
+          "type": "rover_turn_until_line_detected",
           "message0": "quay động cơ trái %1 động cơ phải %2 đến khi gặp vạch đen tối đa %3 giây",
           "args0": [
             {
@@ -93,7 +93,7 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     init: function () {
       this.jsonInit(
         {
-          "type": "rover_move_delay",
+          "type": "rover_follow_line_delay",
           "message0": "dò line với tốc độ %1 (0-100) trong %2 giây",
           "args0": [
             
