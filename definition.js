@@ -107,7 +107,7 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
               min: 0,
               type: "input_value",
               check: "Number",
-              name: "time",
+              name: "timeout",
             }
           ],
           "inputsInline": true,
@@ -125,8 +125,8 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     Blockly.Python.definitions_['import_rover'] = 'from rover import *';
     Blockly.Python.definitions_['import_robocon'] = 'from robot import *';
     var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
-    var time = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
+    var timeout = Blockly.Python.valueToCode(block, 'time', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code =  "follow_forward(" + speed + ", " + time + ")\n";
+    var code =  "follow_forward(" + speed + ", " + timeout *1000 + ")\n";
     return code;
   };
