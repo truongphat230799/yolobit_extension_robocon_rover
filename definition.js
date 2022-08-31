@@ -40,7 +40,7 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     var m2_speed = Blockly.Python.valueToCode(block, 'm2_speed', Blockly.Python.ORDER_ATOMIC);
     var second = Blockly.Python.valueToCode(block, 'second', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code = "turn_until_line_detected(" + m1_speed + ", " + m2_speed + "," + second +")\n";
+    var code = "turn_until_line_detected(" + m1_speed + ", " + m2_speed + "," + second*1000 +")\n";
     return code;
   };
 
