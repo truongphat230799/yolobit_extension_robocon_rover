@@ -23,7 +23,7 @@
           <field name="NUM">50</field>
         </shadow>
       </value>
-      <value name="request">
+      <value name="condition">
       </value>
       <value name="timeout">
         <shadow type="math_number">
