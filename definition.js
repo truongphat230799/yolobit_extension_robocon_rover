@@ -4,16 +4,21 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
       this.jsonInit(
         {
           "type": "rover_move_motor",
-          "message0": "quay động cơ trái %1 động cơ phải %2 đến khi gặp vạch đen",
+          "message0": "quay động cơ trái %1 động cơ phải %2 đến khi gặp vạch đen tối đa %3 giây",
           "args0": [
             {
               "type": "input_value",
-              "name": "left_wheel_speed",
+              "name": "m1_speed",
               "check": "Number",
             },
             {
               "type": "input_value",
-              "name": "right_wheel_speed",
+              "name": "m2_speed",
+              "check": "Number",
+            },
+            {
+              "type": "input_value",
+              "name": "second",
               "check": "Number",
             }
           ],
@@ -30,11 +35,12 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
   
   Blockly.Python["rover_turn_until_line_detected"] = function (block) {
     Blockly.Python.definitions_['import_rover'] = 'from rover import *';
-    Blockly.Python.definitions_['import_robocon'] = 'from robot import *';
-    var left_wheel_speed = Blockly.Python.valueToCode(block, 'left_wheel_speed', Blockly.Python.ORDER_ATOMIC);
-    var right_wheel_speed = Blockly.Python.valueToCode(block, 'right_wheel_speed', Blockly.Python.ORDER_ATOMIC);
+    Blockly.Python.definitions_['import_robocon'] = 'from robocon import *';
+    var m1_speed = Blockly.Python.valueToCode(block, 'm1_speed', Blockly.Python.ORDER_ATOMIC);
+    var m2_speed = Blockly.Python.valueToCode(block, 'm2_speed', Blockly.Python.ORDER_ATOMIC);
+    var second = Blockly.Python.valueToCode(block, 'second', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code = "turn_until_line_detected(" + left_wheel_speed + ", " + right_wheel_speed + ")\n";
+    var code = "turn_until_line_detected(" + m1_speed + ", " + m2_speed + "," + second +")\n";
     return code;
   };
 
@@ -53,7 +59,7 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
             },
             {
                 "type": "input_value",
-                "name": "request",
+                "name": "condition",
             },
             {
                 type: "input_value",
@@ -75,15 +81,10 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     Blockly.Python.definitions_['import_rover'] = 'from rover import *';
     Blockly.Python.definitions_['import_robocon'] = 'from robot import *';
     var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
-    var request = Blockly.Python.valueToCode(block, 'request', Blockly.Python.ORDER_ATOMIC);
+    var request = Blockly.Python.valueToCode(block, 'condition', Blockly.Python.ORDER_ATOMIC);
     var timeout = Blockly.Python.valueToCode(block, 'timeout', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code = "";
-    if (speed > 0) 
-        code = "follow_forward(" + speed + "," + timeout + ")\n" + "wait_for(lambda:" + request+")\n" + "rover.stop()\n";
-    else 
-        code = "follow_backward(" + speed + "," + timeout +")\n" + "wait_for(lambda:" + request+")\n" + "rover.stop()\n"
-
+    var code = "follow_line_until ("+ speed +","+ "lambda: (" + condition + "," + timeout + ")" +")\n";
     return code;
   };
 
@@ -127,6 +128,6 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
     var timeout = Blockly.Python.valueToCode(block, 'timeout', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code =  "follow_forward(" + speed + ", " + timeout *1000 + ")\n";
+    var code =  "follow_line_delay(" + speed + ", " + timeout *1000 + ")\n";
     return code;
   };
