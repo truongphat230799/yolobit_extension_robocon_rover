@@ -1,14 +1,19 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-  <category name="ROVER_ROBOCON" colour="#cb2026" icon="flag">
+  <category name="ROBOCON" colour="#cb2026" icon="flag">
     <block type="rover_turn_until_line_detected">
-      <value name="left_wheel_speed">
+      <value name="m1_speed">
         <shadow type="math_number">
           <field name="NUM">50</field>
         </shadow>
       </value>
-      <value name="right_wheel_speed">
+      <value name="m2_speed">
         <shadow type="math_number">
           <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="second">
+        <shadow type="math_number">
+          <field name="NUM">5</field>
         </shadow>
       </value>
     </block>
