@@ -46,7 +46,7 @@ def turn_until_line_detected(m1_speed, m2_speed, timeout=5000):
     time.sleep_ms(10)
 
 
-def follow_backward(speed, t = None):
+def follow_backward(speed, timeout = None):
   if rover.read_line_sensors() == (0, 1, 1, 0):
     rover.backward(speed)
   elif rover.read_line_sensors() == (0, 1, 0, 0):
@@ -61,9 +61,13 @@ def follow_backward(speed, t = None):
     rover.set_wheel_speed(speed, (-speed))
   else:
     rover.backward(speed)
-  if t != None:
-    time.sleep(t)
-    rover.stop()
+  if timeout != None:
+    last_time = time.ticks()
+    while True:
+      if time.ticks_ms() - last_time > timeout:
+        rover.stop()
+      break
+    
 
 def follow_line(speed):
     if speed > 0:
@@ -72,7 +76,7 @@ def follow_line(speed):
         follow_backward()
 
 
-def follow_forward(speed,t = None):
+def follow_forward(speed,timeout = None):
     if (rover.read_line_sensors() == (1, 0, 0, 0)) or (rover.read_line_sensors() == (1, 1, 0, 0)):
         rover.turn_left(speed)
     elif (rover.read_line_sensors() == (0, 0, 0, 1)) or (rover.read_line_sensors() == (0, 0, 1, 1)):
@@ -81,6 +85,9 @@ def follow_forward(speed,t = None):
         rover.backward(speed, 0.1)
     else:
         rover.forward(speed)
-    if t != None:
-      time.sleep(t)
-      rover.stop()
+    if timeout != None:
+      last_time = time.ticks()
+      while True:
+        if time.ticks_ms() - last_time > timeout:
+          rover.stop()
+        break
