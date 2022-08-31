@@ -128,6 +128,6 @@ Blockly.Blocks['rover_turn_until_line_detected'] = {
     var speed = Blockly.Python.valueToCode(block, 'speed', Blockly.Python.ORDER_ATOMIC);
     var timeout = Blockly.Python.valueToCode(block, 'timeout', Blockly.Python.ORDER_ATOMIC);
     // TODO: Assemble Python into code variable.
-    var code =  "follow_line_delay(" + speed + ", " + timeout *1000 + ")\n";
+    var code = "follow_line_until ("+ speed +","+ "lambda: (False)" + "," + timeout*1000 +")\n";
     return code;
   };
